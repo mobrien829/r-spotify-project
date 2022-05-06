@@ -1,0 +1,1 @@
+Project for the R module of the NYC Data Science Academy bootcamp using spotifyr package to access the Spotify Web API.
