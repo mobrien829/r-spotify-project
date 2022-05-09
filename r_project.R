@@ -18,3 +18,6 @@ playlist_df = playlist_df %>% select(playlist_id, danceability, energy, key, lou
 
 # WRITE CSV to locally cache data
 # write.csv(playlist_df, "./playlist_csv_20220506.csv", row.names = FALSE)
+
+# read_csv to read the cached file
+# playlist_df = read.csv("playlist_csv_20220506.csv")
