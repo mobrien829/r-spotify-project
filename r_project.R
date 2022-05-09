@@ -14,7 +14,7 @@ audio_features_test = get_playlist_audio_features(playlist_uris = c(test_playlis
 playlist_df = get_playlist_audio_features(playlist_uris = c(test_df$id))
 
 # select columns that will be most useful
-playlist_df = playlist_df %>% select(playlist_id, danceability, energy, key, loudness, mode, speechiness, acousticness, valence, tempo, track.id, track.artists, track.popularity, track.duration_ms, track.name, track.album.name)
+playlist_df = playlist_df %>% select(playlist_id, playlist_name, danceability, energy, key, loudness, mode, speechiness, acousticness, valence, tempo, track.id, track.artists, track.popularity, track.duration_ms, track.name, track.album.name)
 
 # WRITE CSV to locally cache data
 # write.csv(playlist_df, "./playlist_csv_2022058.csv", row.names = FALSE)
@@ -49,3 +49,26 @@ playlist_sample %>%
 
 playlist_sample %>%
   ggplot(aes(x=log(followers.total), y=track.popularity)) + geom_point() + labs(x="Log of Followers", y="Track Popularity", title="Followers vs. Song popularity")
+
+playlist_sample %>% 
+  mutate(playlist_name = as.factor(playlist_name)) %>%
+  group_by(playlist_id) %>%
+  ggplot(aes(x = popularity, y = track.popularity)) + geom_point(aes(color=playlist_name)) +
+  labs(x = "Artist Popularity", y = "Track Popularity", title="Artist Popularity vs. Track Popularity") + 
+  scale_colour_discrete("Playlist Name")
+
+?summarise
+?n
+
+playlist_df %>% mutate(artist_info = get_artist(id = playlist_df$id))
+playlist_df = playlist_df %>% mutate(artist_info = lapply(id, get_artist))
+
+data.frame(playlist_df$artist_info)
+# every 9 rows it has artist popularity
+# create condition that only gets certain rows
+row_counter = 1:nrow(new_test_df)
+
+pared_df = new_test_df[8:nrow(new_test_df), ]
+pared_df = new_test_df[row_counter %% 10 == 0, ]
+
+?data.frame
