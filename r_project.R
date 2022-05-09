@@ -69,6 +69,8 @@ data.frame(playlist_df$artist_info)
 row_counter = 1:nrow(new_test_df)
 
 pared_df = new_test_df[8:nrow(new_test_df), ]
-pared_df = new_test_df[row_counter %% 10 == 0, ]
+pared_df = new_test_df[row_counter %% 10 == 0 +8, ]
+pared_df$artist_info = pared_df$artist_info %>% as.numeric()
+# selected correct items, need to convert artist_info to normal column DONE
 
 ?data.frame
