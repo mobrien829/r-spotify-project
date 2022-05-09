@@ -44,6 +44,8 @@ playlist_sample = playlist_sample %>% inner_join(artists_df, by = c("name", "uri
 playlist_df %>% ggplot(aes(track.popularity)) + geom_density() + theme(axis.ticks.y=element_blank(), axis.text.y = element_blank()) + labs(x="Popularity", y="Density", title="Density of Popularity")
 
 playlist_sample %>% 
-  ggplot(aes(x = energy, y = track.popularity)) + geom_point(aes(color=tempo)) + labs(x="Energy", y="Popularity", title="Popularity against energy")
+  ggplot(aes(x = energy, y = track.popularity)) + geom_point(aes(color=tempo)) + labs(x="Energy", y="Popularity", title="Popularity against Energy")
 
 
+playlist_sample %>%
+  ggplot(aes(x=log(followers.total), y=track.popularity)) + geom_point() + labs(x="Log of Followers", y="Track Popularity", title="Followers vs. Song popularity")
