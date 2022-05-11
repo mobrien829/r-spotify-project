@@ -50,10 +50,10 @@ playlist_sample %>%
 playlist_sample %>%
   ggplot(aes(x=log(followers.total), y=track.popularity)) + geom_point() + labs(x="Log of Followers", y="Track Popularity", title="Followers vs. Song popularity")
 
-playlist_sample %>% 
+pared_df %>% 
   mutate(playlist_name = as.factor(playlist_name)) %>%
   group_by(playlist_id) %>%
-  ggplot(aes(x = popularity, y = track.popularity)) + geom_point(aes(color=playlist_name)) +
+  ggplot(aes(x = artist_info, y = track.popularity)) + geom_point(aes(color=playlist_name), alpha = 0.4) +
   labs(x = "Artist Popularity", y = "Track Popularity", title="Artist Popularity vs. Track Popularity") + 
   scale_colour_discrete("Playlist Name")
 

@@ -50,3 +50,5 @@ rsconnect/
 
 # data files
 *.csv
+# todo file
+todo.md
